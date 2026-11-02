@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#087a3d">
+    <meta name="description" content="Report a computer laboratory equipment or software issue.">
+    <title>Report Issue | GC LogBook</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body data-page="issue">
+    <header class="site-header">
+        <a class="brand" href="index.html" aria-label="GC LogBook home">
+            <img src="assets/gc-logo.jpg" alt="Gordon College logo">
+            <span><strong>GC LogBook</strong><small>Computer Laboratory</small></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Dashboard</a>
+            <a href="check-in.html">Student Check-In</a>
+            <a class="active" href="log-issue.html">Report Issue</a>
+        </nav>
+    </header>
+
+    <main class="page-shell narrow-shell">
+        <section class="page-intro">
+            <p class="eyebrow">EQUIPMENT & SUPPORT</p>
+            <h1>Report an <span class="text-green">Issue</span></h1>
+            <p class="muted">Let the laboratory staff know when a computer or peripheral needs attention.</p>
+        </section>
+
+        <div class="form-layout">
+            <section class="panel form-panel">
+                <div class="form-title"><div class="stat-icon yellow-icon">!</div><div><h2>Issue report details</h2><p class="muted">Please provide clear and accurate information.</p></div></div>
+                <form id="issueForm">
+                    <div class="field">
+                        <label for="unit-id">Computer unit <span>*</span></label>
+                        <select id="unit-id" name="pc" required>
+                            <option value="">Select a computer</option>
+                            <option value="PC-01">PC-01</option>
+                            <option value="PC-02">PC-02</option>
+                            <option value="PC-03">PC-03</option>
+                            <option value="PC-04">PC-04</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="issue-type">Issue category <span>*</span></label>
+                        <select id="issue-type" name="issueType" required>
+                            <option value="">Select an issue category</option>
+                            <option value="Hardware Broken">Hardware broken / defective</option>
+                            <option value="Missing Peripheral">Peripheral missing</option>
+                            <option value="Software Error">Software / operating system error</option>
+                            <option value="Network Problem">Network / internet problem</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="description">Detailed description <span>*</span></label>
+                        <textarea id="description" name="description" rows="5" minlength="8" maxlength="600" placeholder="Describe what happened, what is missing, or what is not working..." required></textarea>
+                        <small class="field-help">At least 8 characters. Include any useful details for troubleshooting.</small>
+                    </div>
+                    <div class="form-actions">
+                        <a class="btn btn-outline" href="index.html">Cancel</a>
+                        <button class="btn btn-primary" type="submit">Submit report <span>→</span></button>
+                    </div>
+                </form>
+            </section>
+            <aside class="side-note warning-note">
+                <div class="side-note-mark">!</div>
+                <h3>Help protect the equipment.</h3>
+                <p>If a computer appears damaged or unsafe to use, stop using it and notify the laboratory staff.</p>
+                <ul><li>Choose the correct PC number.</li><li>Describe the issue clearly.</li><li>Do not attempt repairs unless authorized.</li></ul>
+                <a href="index.html" class="text-link">View reported issues →</a>
+            </aside>
+        </div>
+        <footer class="site-footer"><span>© <span id="year"></span> GC LogBook</span><span>Gordon College · Computer Laboratory</span></footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
