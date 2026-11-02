@@ -1,8 +1,3 @@
-/* =========================================================
-   GC LogBook - Shared JavaScript
-   Data is saved in this browser using localStorage.
-   ========================================================= */
-
 const STORAGE_KEYS = {
     checkins: "gcLogBook_checkins",
     issues: "gcLogBook_issues"
@@ -356,45 +351,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function setupCheckInQRCode() {
-    // 1. Only run if we are on the check-in page
-    const pcSelect = document.getElementById('assigned-pc');
-    if (!pcSelect) return;
+window.addEventListener('DOMContentLoaded', function() {
 
-    // 2. Read ?pc= from the browser URL
     const urlParams = new URLSearchParams(window.location.search);
     const scannedPC = urlParams.get('pc');
 
-    if (!scannedPC) return;
-
-    // 3. Match and auto-select the PC
-    const targetPC = scannedPC.trim().toUpperCase();
-
-    for (let i = 0; i < pcSelect.options.length; i++) {
-        if (pcSelect.options[i].value.toUpperCase() === targetPC) {
-            pcSelect.selectedIndex = i;
-            
-            // Visual lock indicating QR auto-fill
-            pcSelect.style.backgroundColor = '#e9f6ee';
-            pcSelect.style.borderColor = '#087a3d';
-            pcSelect.style.fontWeight = 'bold';
-            pcSelect.style.pointerEvents = 'none'; // Locks dropdown so user can't alter scanned PC
-            break;
-        }
+    if (scannedPC) {
+        const pcInput = document.getElementById('assigned-pc');
+        pcInput.value = scannedPC;
+        
+        pcInput.readOnly = true;
+        pcInput.style.backgroundColor = '#e9ecef';
     }
-}
-
-// Execute when the page loads
-document.addEventListener("DOMContentLoaded", () => {
-    setupNavigation();
-    setCommonPageDetails();
-    setupCheckInForm();
-    setupIssueForm();
-
-    // Check for QR code link on check-in page only
-    setupCheckInQRCode();
-
-    if (document.body.dataset.page === "dashboard") {
-        renderDashboard();
-    }
-});
+}); 
