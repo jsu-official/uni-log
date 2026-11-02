@@ -355,3 +355,17 @@ document.addEventListener("DOMContentLoaded", () => {
         renderDashboard();
     }
 });
+
+window.addEventListener('DOMContentLoaded', function() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const scannedPC = urlParams.get('pc');
+
+    if (scannedPC) {
+        const pcInput = document.getElementById('assigned-pc');
+        pcInput.value = scannedPC;
+        
+        pcInput.readOnly = true;
+        pcInput.style.backgroundColor = '#e9ecef';
+    }
+});
